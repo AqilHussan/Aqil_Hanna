@@ -4,33 +4,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aqil & Hanna - Wedding Reception Invitation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: #2f1f1f;
-      background-color: #faf6f5;
-      overflow-x: hidden;
-      min-height: 100vh; /* Ensure body takes full viewport height */
+    :root {
+      --primary-color: #7b2525;
+      --secondary-color: #4a2c2a;
+      --text-color: #2f1f1f;
+      --bg-color-light: #faf6f5;
+      --bg-color-dark: #f0ebea;
+      --accent-gold: #d4af37;
     }
 
-    .hero {
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-color);
+      background-color: var(--bg-color-light);
+      overflow-x: hidden;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    section {
       position: relative;
       width: 100%;
-      height: 100vh;
-      background: url('BKG.png.png') center/cover no-repeat; /* Update this path */
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 2rem;
-      overflow: hidden; /* Hide overflow for particle effects */
+      padding: 4rem 2rem;
+      overflow: hidden;
+      background-color: var(--bg-color-light);
+      transition: background-color 1s ease-out; /* Smooth background transition */
     }
 
-    /* Live Wallpaper - Subtle Particles Effect */
-    .hero::before {
+    .section-dark {
+        background-color: var(--bg-color-dark);
+    }
+
+    .hero {
+      background: url('BKG.png.png') center/cover no-repeat fixed; /* Parallax effect */
+    }
+
+    .about-us-section {
+      background: url('subtle_pattern.jpg') center/cover no-repeat; /* New background for about us */
+    }
+
+    .venue-section {
+        background-color: #fcf8f7; /* Slightly different background for venue */
+    }
+
+    /* Animated Particles/Gradient Effect */
+    .animated-bg::before {
       content: '';
       position: absolute;
       top: 0;
@@ -40,70 +70,169 @@
       background: radial-gradient(circle at top left, rgba(255,255,255,0.1) 0%, transparent 30%),
                   radial-gradient(circle at bottom right, rgba(255,255,255,0.1) 0%, transparent 30%);
       animation: gradientShift 20s infinite alternate;
-      pointer-events: none; /* Allows clicks through the pseudo-element */
+      pointer-events: none;
+      z-index: 1;
     }
 
     .overlay {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(255, 255, 255, 0.4); /* Slightly less opaque for better background visibility */
-      backdrop-filter: blur(2px); /* Less blur to show more of the background details */
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 0;
     }
 
-    .content {
+    .content-wrapper {
       position: relative;
       z-index: 2;
-      animation: fadeInUp 2s ease forwards; /* Use forwards to keep the final state */
-      background: rgba(255, 255, 255, 0.75); /* Soft background for text readability */
-      padding: 2.5em 3em;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      max-width: 90%;
-      transform: scale(0.98); /* Initial subtle scale for animation */
-      animation: fadeInUp 2s ease forwards, subtleZoom 8s infinite alternate ease-in-out;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 3em 4em;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      max-width: 900px;
+      width: 100%;
+      margin: 2rem auto;
+      border: 1px solid rgba(220, 200, 200, 0.4);
+      transform: scale(0.98);
+      animation: subtleZoom 8s infinite alternate ease-in-out;
+      opacity: 0; /* Hidden by default for scroll animation */
+      transform: translateY(50px); /* Initial position for scroll animation */
+      transition: opacity 1s ease-out, transform 1s ease-out; /* Transition properties */
+    }
+
+    /* Class added by JS when section is in view */
+    .content-wrapper.animate-in {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 3.5em; /* Slightly larger */
-      color: #7b2525;
+      font-size: 4.5em;
+      color: var(--primary-color);
       margin-bottom: 0.2em;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+      line-height: 1.1;
     }
 
     h2 {
-      font-size: 1.6em; /* Slightly larger */
+      font-size: 2em;
       font-weight: 400;
-      color: #4a2c2a;
-      margin-bottom: 1.8em; /* More spacing */
+      color: var(--secondary-color);
+      margin-bottom: 1.5em;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
-    .details {
-      font-size: 1.15em;
+    .sub-heading {
+        font-size: 1.8em;
+        font-family: 'Great Vibes', cursive;
+        color: var(--primary-color);
+        margin-top: 1.5em;
+        margin-bottom: 1em;
+    }
+
+    .arabic-verse {
+      font-family: 'Amiri', serif;
+      font-size: 2.2em; /* Larger for impact */
+      direction: rtl; /* Right-to-left for Arabic */
+      margin: 1.5em 0 0.5em 0;
+      color: var(--primary-color);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+      line-height: 1.8;
+    }
+    .arabic-translit {
+        font-size: 1.1em;
+        color: var(--secondary-color);
+        font-style: italic;
+        margin-top: 0.5em;
+    }
+    .arabic-translation {
+      font-size: 1.2em;
+      color: var(--text-color);
+      margin-top: 1em;
+      font-weight: 300;
+    }
+
+    .details-box {
+      font-size: 1.2em;
       line-height: 1.9;
-      background: rgba(255, 255, 255, 0.9); /* More opaque for text clarity */
-      padding: 1.8em 2.5em;
-      border-radius: 10px;
-      box-shadow: inset 0 1px 5px rgba(0,0,0,0.05); /* Inner shadow for depth */
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2em 3em;
+      border-radius: 12px;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.08);
       display: inline-block;
-      border: 1px solid rgba(220, 200, 200, 0.3); /* Soft border */
+      border: 1px solid rgba(220, 200, 200, 0.5);
+      margin-top: 2em;
     }
-    .details p {
-        margin-bottom: 0.5em;
+    .details-box p {
+      margin-bottom: 0.6em;
     }
-    .details p:last-child {
-        margin-bottom: 0;
+    .details-box p:last-child {
+      margin-bottom: 0;
+    }
+    .details-box strong {
+        color: var(--primary-color);
     }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(50px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+    .couple-names {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 1em;
     }
+    .couple-names span {
+        font-family: 'Great Vibes', cursive;
+        font-size: 3.8em;
+        color: var(--primary-color);
+    }
+    .couple-names .ampersand {
+        font-size: 2em;
+        color: var(--secondary-color);
+    }
+    .love-story {
+        font-size: 1.15em;
+        margin-top: 1.5em;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .location-map {
+        margin-top: 2.5em;
+        width: 100%;
+        max-width: 600px;
+        height: 350px;
+        border-radius: 10px;
+        border: 2px solid var(--accent-gold);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .rsvp-button {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 1em 2.5em;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 1.3em;
+        font-weight: 600;
+        margin-top: 2.5em;
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .rsvp-button:hover {
+        background-color: #6a1f1f;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
 
     @keyframes subtleZoom {
         0% { transform: scale(1); }
-        100% { transform: scale(1.01); }
+        100% { transform: scale(1.005); }
     }
 
     @keyframes gradientShift {
@@ -115,46 +244,123 @@
       }
     }
 
-
+    /* Footer */
     footer {
       text-align: center;
-      padding: 2em; /* More padding */
-      font-size: 1em; /* Slightly larger */
-      color: #555;
-      background: #f9f3f3;
-      border-top: 1px solid #eee;
+      padding: 3em;
+      font-size: 1.1em;
+      color: var(--secondary-color);
+      background: var(--bg-color-dark);
+      border-top: 1px solid rgba(0,0,0,0.05);
+      position: relative;
+      z-index: 10; /* Ensure footer is above other elements */
+    }
+    footer p {
+        max-width: 800px;
+        margin: 0 auto;
+        font-style: italic;
+    }
+
+
+    /* Media Queries */
+    @media (max-width: 900px) {
+        .content-wrapper { padding: 2.5em 3em; }
+        h1 { font-size: 3.5em; }
+        .couple-names span { font-size: 3em; }
+        .arabic-verse { font-size: 1.8em; }
+        .details-box { padding: 1.5em 2em; font-size: 1.1em; }
     }
 
     @media (max-width: 768px) {
       h1 { font-size: 2.8em; }
-      h2 { font-size: 1.3em; }
-      .content { padding: 2em; }
-      .details { font-size: 1em; padding: 1.5em; }
+      h2 { font-size: 1.5em; }
+      .sub-heading { font-size: 1.5em; }
+      .content-wrapper { padding: 2em; margin: 1.5rem auto; border-radius: 15px;}
+      .details-box { font-size: 1em; padding: 1.2em; }
+      .couple-names span { font-size: 2.5em; }
+      .couple-names .ampersand { font-size: 1.8em; }
+      .arabic-verse { font-size: 1.6em; margin: 1em 0 0.5em 0; }
+      .arabic-translation { font-size: 1.1em; }
+      .rsvp-button { padding: 0.8em 2em; font-size: 1.2em; }
+      .location-map { height: 300px; }
     }
+
     @media (max-width: 480px) {
+      section { padding: 3rem 1rem; }
       h1 { font-size: 2.2em; }
-      h2 { font-size: 1.1em; }
-      .content { padding: 1.5em; }
-      .details { font-size: 0.9em; padding: 1.2em; }
+      h2 { font-size: 1.2em; margin-bottom: 1em;}
+      .sub-heading { font-size: 1.3em; }
+      .content-wrapper { padding: 1.5em; border-radius: 10px;}
+      .details-box { font-size: 0.9em; padding: 1em; }
+      .couple-names { flex-direction: column; gap: 5px; }
+      .couple-names span { font-size: 2em; }
+      .couple-names .ampersand { display: none; } /* Hide ampersand on small screens */
+      .arabic-verse { font-size: 1.4em; }
+      .arabic-translation { font-size: 1em; }
+      .love-story { font-size: 1em; }
+      .rsvp-button { padding: 0.7em 1.8em; font-size: 1.1em; }
+      .location-map { height: 250px; }
     }
   </style>
 </head>
 <body>
-  <div class="hero">
+
+  <section id="welcome" class="hero animated-bg">
     <div class="overlay"></div>
-    <div class="content">
+    <div class="content-wrapper">
+      <h2>You're Invited to the Wedding Reception of</h2>
       <h1>Aqil & Hanna</h1>
-      <h2>Wedding Reception</h2>
-      <div class="details">
+      <p class="arabic-translation" style="margin-top: 2em; max-width: 500px;">
+        "And from among His signs is that He created for you mates from yourselves, that you may find tranquility in them; and He placed between you affection and mercy. Indeed in that are signs for a people who give thought."
+      </p>
+      <p class="arabic-verse" style="font-size: 1.8em;">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ</p>
+      <a href="#about" style="text-decoration: none; margin-top: 3em; display: inline-block;">
+          <button class="rsvp-button" style="background-color: var(--accent-gold); color: var(--text-color);">
+              Discover Our Story <span style="margin-left: 10px;">&#8595;</span>
+          </button>
+      </a>
+    </div>
+  </section>
+
+  <section id="about" class="about-us-section section-dark animated-bg">
+    <div class="content-wrapper">
+      <h2 class="sub-heading">About Aqil & Hanna</h2>
+      <div class="couple-names">
+        <span>Aqil</span>
+        <span class="ampersand">&</span>
+        <span>Hanna</span>
+      </div>
+      <p class="love-story">
+        Aqil and Hanna's journey began with a shared smile and a common dream. Through laughter and unwavering support, their hearts became intertwined. Now, they are ready to embark on this beautiful new chapter, hand-in-hand, with the blessings of Allah and their loved ones. They eagerly anticipate celebrating their union with you.
+      </p>
+      <p class="arabic-translation" style="margin-top: 2em; max-width: 600px;">
+        "O mankind, indeed We have created you from male and female and made you peoples and tribes that you may know one another. Indeed, the most noble of you in the sight of Allah is the most righteous of you. Indeed, Allah is Knowing and Acquainted."
+      </p>
+      <p class="arabic-verse">يَا أَيُّهَا النَّاسُ إِنَّا خَلَقْنَاكُم مِّن ذَكَرٍ وَأُنثَىٰ وَجَعَلْنَاكُمْ شُعُوبًا وَقَبَائِلَ لِتَعَارَفُوا ۚ إِنَّ أَكْرَمَكُمْ عِندَ اللَّهِ أَتْقَاكُمْ ۚ إِنَّ اللَّهَ عَلِيمٌ خَبِيرٌ</p>
+    </div>
+  </section>
+
+  <section id="details" class="section-dark">
+    <div class="content-wrapper">
+      <h2 class="sub-heading">The Celebration</h2>
+      <div class="details-box">
         <p><strong>Date:</strong> 9th January 2026</p>
         <p><strong>Time:</strong> 6:00 PM – 10:00 PM</p>
-        <p><strong>Venue:</strong> Trinity Casa</p>
+        <p><strong>Dress Code:</strong> Traditional / Formal</p>
       </div>
+      <p class="arabic-translation" style="margin-top: 2em; max-width: 500px;">
+        "So verily with the hardship, there is ease. Verily with the hardship, there is ease." (Quran 94:5-6)
+      </p>
+      <p class="arabic-verse" style="font-size: 1.8em;">فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ۝ إِنَّ مَعَ الْعُسْرِ يُسْرًا</p>
     </div>
-  </div>
+  </section>
 
-  <footer>
-    <p>“And one of His signs is that He created for you spouses from among yourselves so that you may find comfort in them.” — Qur’an 30:21</p>
-  </footer>
-</body>
-</html>
+  <section id="venue" class="venue-section">
+    <div class="content-wrapper">
+      <h2 class="sub-heading">Venue & Your Presence</h2>
+      <div class="details-box">
+        <p><strong>Venue:</strong> Trinity Casa</p>
+        <p>123 Wedding Lane, Grand City, CA 90210</p>
+      </div>
+      <iframe class="location-map"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.2981977755355!2d-122.41941568468138!3d37.77492977975829!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8
