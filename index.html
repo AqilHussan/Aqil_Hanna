@@ -12,75 +12,130 @@
       color: #2f1f1f;
       background-color: #faf6f5;
       overflow-x: hidden;
+      min-height: 100vh; /* Ensure body takes full viewport height */
     }
 
     .hero {
       position: relative;
       width: 100%;
       height: 100vh;
-      background: url('download.jpg') center/cover no-repeat;
+      background: url('BKG.png') center/cover no-repeat; /* Update this path */
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       padding: 2rem;
+      overflow: hidden; /* Hide overflow for particle effects */
+    }
+
+    /* Live Wallpaper - Subtle Particles Effect */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top left, rgba(255,255,255,0.1) 0%, transparent 30%),
+                  radial-gradient(circle at bottom right, rgba(255,255,255,0.1) 0%, transparent 30%);
+      animation: gradientShift 20s infinite alternate;
+      pointer-events: none; /* Allows clicks through the pseudo-element */
     }
 
     .overlay {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(3px);
+      background: rgba(255, 255, 255, 0.4); /* Slightly less opaque for better background visibility */
+      backdrop-filter: blur(2px); /* Less blur to show more of the background details */
     }
 
     .content {
       position: relative;
       z-index: 2;
-      animation: fadeInUp 2s ease;
+      animation: fadeInUp 2s ease forwards; /* Use forwards to keep the final state */
+      background: rgba(255, 255, 255, 0.75); /* Soft background for text readability */
+      padding: 2.5em 3em;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      max-width: 90%;
+      transform: scale(0.98); /* Initial subtle scale for animation */
+      animation: fadeInUp 2s ease forwards, subtleZoom 8s infinite alternate ease-in-out;
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 3.2em;
+      font-size: 3.5em; /* Slightly larger */
       color: #7b2525;
-      margin-bottom: 0.3em;
+      margin-bottom: 0.2em;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
 
     h2 {
-      font-size: 1.4em;
+      font-size: 1.6em; /* Slightly larger */
       font-weight: 400;
       color: #4a2c2a;
-      margin-bottom: 1.5em;
+      margin-bottom: 1.8em; /* More spacing */
     }
 
     .details {
-      font-size: 1.1em;
-      line-height: 1.8;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 1.5em 2em;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 1.15em;
+      line-height: 1.9;
+      background: rgba(255, 255, 255, 0.9); /* More opaque for text clarity */
+      padding: 1.8em 2.5em;
+      border-radius: 10px;
+      box-shadow: inset 0 1px 5px rgba(0,0,0,0.05); /* Inner shadow for depth */
       display: inline-block;
+      border: 1px solid rgba(220, 200, 200, 0.3); /* Soft border */
+    }
+    .details p {
+        margin-bottom: 0.5em;
+    }
+    .details p:last-child {
+        margin-bottom: 0;
     }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(50px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
+
+    @keyframes subtleZoom {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.01); }
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 0%, 100% 100%;
+      }
+      100% {
+        background-position: 100% 100%, 0% 0%;
+      }
+    }
+
 
     footer {
       text-align: center;
-      padding: 1.5em;
-      font-size: 0.9em;
-      color: #666;
+      padding: 2em; /* More padding */
+      font-size: 1em; /* Slightly larger */
+      color: #555;
       background: #f9f3f3;
+      border-top: 1px solid #eee;
     }
 
     @media (max-width: 768px) {
-      h1 { font-size: 2.5em; }
-      .details { font-size: 1em; padding: 1.2em; }
+      h1 { font-size: 2.8em; }
+      h2 { font-size: 1.3em; }
+      .content { padding: 2em; }
+      .details { font-size: 1em; padding: 1.5em; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 2.2em; }
+      h2 { font-size: 1.1em; }
+      .content { padding: 1.5em; }
+      .details { font-size: 0.9em; padding: 1.2em; }
     }
   </style>
 </head>
