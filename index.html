@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aqil & Hanna - Wedding Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
     :root {
       --primary-color: #7b2525; /* Deep Red/Burgundy */
       --secondary-color: #4a2c2a; /* Dark Brown */
@@ -50,7 +51,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       z-index: 1000;
       display: flex;
@@ -59,12 +60,14 @@
       opacity: 0;
       visibility: hidden;
       transform: translateY(-100%);
-      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, border-bottom 0.3s ease;
+      border-bottom: 1px solid transparent;
     }
     .navbar.sticky {
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
+      border-bottom: 1px solid rgba(220, 200, 200, 0.4);
     }
     .navbar a {
       color: var(--secondary-color);
@@ -73,6 +76,7 @@
       font-weight: 600;
       transition: color 0.3s ease, background-color 0.3s ease;
       border-radius: 5px;
+      font-size: 1.05em;
     }
     .navbar a:hover {
       color: var(--primary-color);
@@ -99,7 +103,8 @@
     }
 
     .hero-section {
-      background: url('BKG.png.png') center/cover no-repeat fixed; /* New main background */
+      background: url('welcome_bg.jpg') center/cover no-repeat fixed; /* NEW main background */
+      color: var(--text-color); /* Ensure text is readable against new bg */
     }
 
     .about-us-section {
@@ -108,6 +113,10 @@
 
     .countdown-section {
         background-color: #fcf8f7; /* Light background */
+    }
+
+    .family-tree-section {
+        background: url('family_tree_bg.jpg') center/cover no-repeat; /* New family tree background */
     }
 
     .venue-section {
@@ -142,7 +151,7 @@
       position: relative;
       z-index: 2;
       background: rgba(255, 255, 255, 0.9);
-      padding: 3em 4em;
+      padding: 3.5em 4.5em; /* Increased padding */
       border-radius: 20px;
       box-shadow: var(--box-shadow-heavy);
       max-width: 900px;
@@ -163,15 +172,15 @@
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 4.8em;
+      font-size: 5.5em; /* Larger for welcome */
       color: var(--primary-color);
-      margin-bottom: 0.2em;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      margin-bottom: 0.1em;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.25);
       line-height: 1.1;
     }
 
     h2 {
-      font-size: 2.2em;
+      font-size: 2.4em; /* Slightly larger */
       font-weight: 600;
       color: var(--secondary-color);
       margin-bottom: 1.5em;
@@ -181,7 +190,7 @@
 
     .sub-heading {
         font-family: 'Great Vibes', cursive;
-        font-size: 2.5em;
+        font-size: 2.8em; /* Slightly larger */
         color: var(--primary-color);
         margin-top: 1.5em;
         margin-bottom: 1em;
@@ -190,12 +199,15 @@
 
     .arabic-verse {
       font-family: 'Amiri', serif;
-      font-size: 2.3em;
+      font-size: 2.4em; /* Slightly larger */
       direction: rtl;
-      margin: 1.5em 0 0.5em 0;
+      margin: 1.8em 0 0.8em 0; /* Adjusted margins */
       color: var(--primary-color);
       text-shadow: 1px 1px 2px rgba(0,0,0,0.08);
       line-height: 1.8;
+      max-width: 80%; /* Constrain width for better reading */
+      margin-left: auto;
+      margin-right: auto;
     }
     .arabic-translit {
         font-size: 1.1em;
@@ -208,13 +220,16 @@
       color: var(--text-color);
       margin-top: 1em;
       font-weight: 300;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .details-box {
-      font-size: 1.25em;
-      line-height: 1.9;
+      font-size: 1.3em; /* Slightly larger */
+      line-height: 2; /* Increased line height */
       background: rgba(255, 255, 255, 0.98);
-      padding: 2.2em 3.5em;
+      padding: 2.5em 4em; /* Increased padding */
       border-radius: 15px;
       box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
       display: inline-block;
@@ -222,7 +237,7 @@
       margin-top: 2em;
     }
     .details-box p {
-      margin-bottom: 0.7em;
+      margin-bottom: 0.8em;
     }
     .details-box p:last-child {
       margin-bottom: 0;
@@ -236,22 +251,22 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 25px;
+        gap: 30px; /* Increased gap */
         margin-bottom: 1em;
     }
     .couple-names span {
         font-family: 'Great Vibes', cursive;
-        font-size: 4em;
+        font-size: 4.5em; /* Slightly larger */
         color: var(--primary-color);
     }
     .couple-names .ampersand {
-        font-size: 2.5em;
+        font-size: 2.8em; /* Slightly larger */
         color: var(--secondary-color);
     }
     .love-story {
-        font-size: 1.15em;
-        margin-top: 1.5em;
-        max-width: 700px;
+        font-size: 1.2em; /* Slightly larger */
+        margin-top: 1.8em;
+        max-width: 750px; /* Wider text block */
         margin-left: auto;
         margin-right: auto;
     }
@@ -260,15 +275,15 @@
     #countdown {
       display: flex;
       justify-content: center;
-      gap: 25px;
-      margin-top: 2.5em;
+      gap: 30px; /* Increased gap */
+      margin-top: 2.8em;
     }
     .countdown-item {
       background: var(--primary-color);
       color: white;
-      padding: 1.5em 1em;
+      padding: 1.8em 1.2em; /* Increased padding */
       border-radius: 15px;
-      min-width: 120px;
+      min-width: 130px; /* Slightly wider */
       box-shadow: var(--box-shadow-light);
       transition: transform 0.3s ease;
     }
@@ -277,22 +292,75 @@
     }
     .countdown-item span {
       display: block;
-      font-size: 2.8em;
+      font-size: 3em; /* Larger numbers */
       font-weight: 700;
       line-height: 1;
     }
     .countdown-item small {
-      font-size: 0.9em;
+      font-size: 1em; /* Slightly larger text */
       text-transform: uppercase;
-      margin-top: 0.5em;
+      margin-top: 0.6em;
       letter-spacing: 1px;
     }
+
+    /* Family Tree */
+    .family-tree-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px; /* Gap between family cards */
+        margin-top: 3em;
+    }
+    .family-card {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 2.5em;
+        border-radius: 15px;
+        box-shadow: var(--box-shadow-light);
+        width: 100%;
+        max-width: 380px;
+        border: 1px solid rgba(220, 200, 200, 0.7);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .family-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--box-shadow-heavy);
+    }
+    .family-card h3 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 2.2em;
+        color: var(--primary-color);
+        margin-bottom: 1em;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+    }
+    .family-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .family-card li {
+        font-size: 1.15em;
+        color: var(--text-color);
+        margin-bottom: 0.8em;
+        border-bottom: 1px dashed rgba(var(--secondary-color-rgb), 0.2);
+        padding-bottom: 0.8em;
+        line-height: 1.4;
+    }
+    .family-card li:last-child {
+        margin-bottom: 0;
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    .family-card li strong {
+        color: var(--primary-color);
+        font-weight: 600;
+    }
+
 
     /* Gallery */
     .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
+        gap: 25px; /* Slightly increased gap */
         margin-top: 3em;
         max-width: 1000px;
         width: 100%;
@@ -378,7 +446,7 @@
     /* Footer */
     footer {
       text-align: center;
-      padding: 3em;
+      padding: 3.5em; /* Increased padding */
       font-size: 1.1em;
       color: var(--secondary-color);
       background: var(--bg-color-dark);
@@ -411,32 +479,38 @@
     @media (max-width: 900px) {
         .navbar a { padding: 0.5rem 0.8rem; font-size: 0.9em; }
         .content-wrapper { padding: 2.5em 3em; margin: 1.5rem auto; border-radius: 15px;}
-        h1 { font-size: 3.8em; }
-        h2 { font-size: 1.8em; }
-        .sub-heading { font-size: 2em; }
-        .couple-names span { font-size: 3.2em; }
-        .countdown-item { min-width: 100px; padding: 1em 0.8em; }
-        .countdown-item span { font-size: 2.2em; }
-        .arabic-verse { font-size: 1.8em; }
-        .details-box { padding: 1.8em 2.5em; font-size: 1.1em; }
+        h1 { font-size: 4.5em; }
+        h2 { font-size: 2em; }
+        .sub-heading { font-size: 2.2em; }
+        .couple-names span { font-size: 3.5em; }
+        .countdown-item { min-width: 100px; padding: 1.2em 0.8em; }
+        .countdown-item span { font-size: 2.5em; }
+        .arabic-verse { font-size: 2em; }
+        .details-box { padding: 2em 3em; font-size: 1.1em; }
+        .family-card { padding: 2em; max-width: 320px; }
+        .family-card h3 { font-size: 2em; }
+        .family-card li { font-size: 1.1em; }
         .gallery-item img { height: 250px; }
     }
 
     @media (max-width: 768px) {
       .navbar { padding: 0.8rem 0; }
-      .navbar a { padding: 0.4rem 0.6rem; font-size: 0.8em; }
-      h1 { font-size: 3em; }
-      h2 { font-size: 1.5em; margin-bottom: 1em;}
-      .sub-heading { font-size: 1.8em; }
+      .navbar a { padding: 0.4rem 0.6rem; font-size: 0.85em; }
+      h1 { font-size: 3.5em; }
+      h2 { font-size: 1.6em; margin-bottom: 1em;}
+      .sub-heading { font-size: 1.9em; }
       .content-wrapper { padding: 2em; border-radius: 12px;}
-      .details-box { font-size: 1em; padding: 1.2em; }
+      .details-box { font-size: 1em; padding: 1.5em 2em; }
       .couple-names { gap: 15px; }
-      .couple-names span { font-size: 2.8em; }
-      .couple-names .ampersand { font-size: 2em; }
-      .arabic-verse { font-size: 1.6em; margin: 1em 0 0.5em 0; }
+      .couple-names span { font-size: 3em; }
+      .couple-names .ampersand { font-size: 2.2em; }
+      .arabic-verse { font-size: 1.8em; margin: 1.5em 0 0.7em 0; }
       .arabic-translation { font-size: 1.1em; }
-      .countdown-item { min-width: 80px; gap: 15px; }
-      .countdown-item span { font-size: 2em; }
+      .countdown-item { min-width: 85px; gap: 15px; padding: 1em 0.7em; }
+      .countdown-item span { font-size: 2.2em; }
+      .family-card { padding: 1.8em; }
+      .family-card h3 { font-size: 1.8em; }
+      .family-card li { font-size: 1em; }
       .gallery { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
       .gallery-item img { height: 200px; }
       .rsvp-button { padding: 0.8em 2em; font-size: 1.2em; }
@@ -447,21 +521,25 @@
     @media (max-width: 480px) {
       .navbar { display: none; } /* Hide navbar on very small screens, or make it a hamburger */
       section { padding: 3rem 1rem; }
-      h1 { font-size: 2.5em; }
-      h2 { font-size: 1.2em; margin-bottom: 0.8em;}
-      .sub-heading { font-size: 1.5em; }
+      h1 { font-size: 2.8em; }
+      h2 { font-size: 1.3em; margin-bottom: 0.8em;}
+      .sub-heading { font-size: 1.6em; }
       .content-wrapper { padding: 1.5em; border-radius: 10px;}
-      .details-box { font-size: 0.9em; padding: 1em; }
+      .details-box { font-size: 0.9em; padding: 1.2em; }
       .couple-names { flex-direction: column; gap: 5px; }
-      .couple-names span { font-size: 2.2em; }
+      .couple-names span { font-size: 2.5em; }
       .couple-names .ampersand { display: none; }
-      .arabic-verse { font-size: 1.4em; }
+      .arabic-verse { font-size: 1.5em; margin: 1.2em 0 0.6em 0; }
       .arabic-translation { font-size: 1em; }
       .love-story { font-size: 1em; }
       #countdown { gap: 10px; }
       .countdown-item { min-width: 70px; padding: 0.8em 0.5em; }
-      .countdown-item span { font-size: 1.8em; }
+      .countdown-item span { font-size: 2em; }
       .countdown-item small { font-size: 0.8em; }
+      .family-tree-content { gap: 20px; }
+      .family-card { padding: 1.5em; }
+      .family-card h3 { font-size: 1.6em; }
+      .family-card li { font-size: 0.95em; }
       .gallery { grid-template-columns: 1fr; }
       .gallery-item img { height: 250px; }
       .rsvp-button { padding: 0.7em 1.8em; font-size: 1.1em; }
@@ -477,6 +555,7 @@
     <a href="#welcome">Welcome</a>
     <a href="#countdown">Countdown</a>
     <a href="#about">Our Story</a>
+    <a href="#family-tree">Family</a>
     <a href="#details">Details</a>
     <a href="#gallery">Gallery</a>
     <a href="#venue">Venue & RSVP</a>
@@ -487,11 +566,11 @@
     <div class="content-wrapper">
       <h2>You're Invited to the Wedding Reception of</h2>
       <h1>Aqil & Hanna</h1>
-      <p class="arabic-translation" style="margin-top: 2em; max-width: 600px; font-weight: 400;">
+      <p class="arabic-translation" style="margin-top: 2.5em; font-weight: 400;">
         "And from among His signs is that He created for you mates from yourselves, that you may find tranquility in them; and He placed between you affection and mercy. Indeed in that are signs for a people who give thought."
       </p>
-      <p class="arabic-verse" style="font-size: 2em;">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ</p>
-      <a href="#countdown" style="text-decoration: none; margin-top: 3em; display: inline-block;">
+      <p class="arabic-verse" style="font-size: 2.2em;">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ</p>
+      <a href="#countdown" style="text-decoration: none; margin-top: 3.5em; display: inline-block;">
           <button class="rsvp-button" style="background-color: var(--accent-gold); color: var(--text-color);">
               Begin Our Journey <span style="margin-left: 10px;"><i class="fas fa-chevron-down"></i></span>
           </button>
@@ -520,14 +599,15 @@
           <small>Seconds</small>
         </div>
       </div>
-      <p class="arabic-translation" style="margin-top: 2em; max-width: 600px;">
+      <p class="arabic-translation" style="margin-top: 2.5em;">
         "Every soul will taste death. And you will only be given your full compensation on the Day of Resurrection. So he who is drawn away from the Fire and admitted to Paradise has attained [his desire]. And what is the life of this world except the enjoyment of delusion." (Though not directly about marriage, it reminds us of the fleeting nature of this world and the importance of good deeds and lasting relationships.)
       </p>
-      <p class="arabic-verse" style="font-size: 2em;">كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ ۗ وَإِنَّمَا تُوَفَّوْنَ أُجُورَكُمْ يَوْمَ الْقِيَامَةِ ۖ فَمَن زُحْزِحَ عَنِ النَّارِ وَأُدْخِلَ الْجَنَّةَ فَقَدْ فَازَ ۗ وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا مَتَاعُ الْغُرُورِ</p>
+      <p class="arabic-verse" style="font-size: 2.2em;">كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ ۗ وَإِنَّمَا تُوَفَّوْنَ أُجُورَكُمْ يَوْمَ الْقِيَامَةِ ۖ فَمَن زُحْزِحَ عَنِ النَّارِ وَأُدْخِلَ الْجَنَّةَ فَقَدْ فَازَ ۗ وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا مَتَاعُ الْغُرُورِ</p>
     </div>
   </section>
 
   <section id="about" class="about-us-section animated-bg">
+    <div class="overlay"></div>
     <div class="content-wrapper">
       <h2 class="sub-heading">Our Love Story</h2>
       <div class="couple-names">
@@ -538,10 +618,40 @@
       <p class="love-story">
         Aqil and Hanna's journey began with a shared smile and a common dream. Through laughter and unwavering support, their hearts became intertwined. From the quiet moments of companionship to the grand adventures, their bond has grown stronger with each passing day. Now, they are ready to embark on this beautiful new chapter, hand-in-hand, with the blessings of Allah and their loved ones. They eagerly anticipate celebrating their union with you.
       </p>
-      <p class="arabic-translation" style="margin-top: 2em; max-width: 600px;">
+      <p class="arabic-translation" style="margin-top: 2.5em;">
         "O mankind, indeed We have created you from male and female and made you peoples and tribes that you may know one another. Indeed, the most noble of you in the sight of Allah is the most righteous of you. Indeed, Allah is Knowing and Acquainted." (Highlighting unity and recognition in Islam)
       </p>
-      <p class="arabic-verse">يَا أَيُّهَا النَّاسُ إِنَّا خَلَقْنَاكُمْ مِّن ذَكَرٍ وَأُنثَىٰ وَجَعَلْنَاكُمْ شُعُوبًا وَقَبَائِلَ لِتَعَارَفُوا ۚ إِنَّ أَكْرَمَكُمْ عِندَ اللَّهِ أَتْقَاكُمْ ۚ إِنَّ اللَّهَ عَلِيمٌ خَبِيرٌ</p>
+      <p class="arabic-verse" style="font-size: 2.2em;">يَا أَيُّهَا النَّاسُ إِنَّا خَلَقْنَاكُمْ مِّن ذَكَرٍ وَأُنثَىٰ وَجَعَلْنَاكُمْ شُعُوبًا وَقَبَائِلَ لِتَعَارَفُوا ۚ إِنَّ أَكْرَمَكُمْ عِندَ اللَّهِ أَتْقَاكُمْ ۚ إِنَّ اللَّهَ عَلِيمٌ خَبِيرٌ</p>
+    </div>
+  </section>
+
+  <section id="family-tree" class="family-tree-section animated-bg">
+    <div class="overlay"></div>
+    <div class="content-wrapper">
+      <h2 class="sub-heading">Our Beloved Families</h2>
+      <p class="arabic-translation" style="margin-top: 1.5em; max-width: 650px;">
+        "And Allah has made for you from yourselves mates and has made for you from your mates sons and grandchildren and has provided for you from the good things." (Quran 16:72)
+      </p>
+      <p class="arabic-verse" style="font-size: 2.2em;">وَاللَّهُ جَعَلَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا وَجَعَلَ لَكُم مِّنْ أَزْوَاجِكُم بَنِينَ وَحَفَدَةً وَرَزَقَكُم مِّنَ الطَّيِّبَاتِ</p>
+
+      <div class="family-tree-content">
+        <div class="family-card">
+          <h3>Bride's Family</h3>
+          <ul>
+            <li><strong>Parents:</strong> Mr. & Mrs. Abdullah</li>
+            <li><strong>Brother:</strong> Kareem Abdullah</li>
+            <li><strong>Sister:</strong> Fatima Abdullah</li>
+          </ul>
+        </div>
+        <div class="family-card">
+          <h3>Groom's Family</h3>
+          <ul>
+            <li><strong>Parents:</strong> Mr. & Mrs. Rahman</li>
+            <li><strong>Brother:</strong> Tariq Rahman</li>
+            <li><strong>Sister:</strong> Aisha Rahman</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -549,15 +659,15 @@
     <div class="content-wrapper">
       <h2 class="sub-heading">The Celebration</h2>
       <div class="details-box">
-        <p><strong>Date:</strong> 9th January 2026</p>
+        <p><strong>Date:</strong> Thursday, 9th January 2026</p>
         <p><strong>Time:</strong> 6:00 PM – 10:00 PM</p>
         <p><strong>Dress Code:</strong> Traditional / Formal Attire</p>
-        <p><strong>Special Request:</strong> Your blessings are our most cherished gift.</p>
+        <p><strong>Special Request:</strong> Your presence and blessings are our most cherished gift.</p>
       </div>
-      <p class="arabic-translation" style="margin-top: 2em; max-width: 500px;">
+      <p class="arabic-translation" style="margin-top: 2.5em;">
         "So verily with the hardship, there is ease. Verily with the hardship, there is ease." (Quran 94:5-6) - A reminder of hope and endurance.
       </p>
-      <p class="arabic-verse" style="font-size: 2em;">فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ۝ إِنَّ مَعَ الْعُسْرِ يُسْرًا</p>
+      <p class="arabic-verse" style="font-size: 2.2em;">فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ۝ إِنَّ مَعَ الْعُسْرِ يُسْرًا</p>
     </div>
   </section>
 
@@ -570,10 +680,10 @@
         <div class="gallery-item"><img src="https://via.placeholder.com/400x300/c0c0c0/ffffff?text=Couple+Photo+3" alt="Couple Photo 3"></div>
         <div class="gallery-item"><img src="https://via.placeholder.com/400x300/b0b0b0/ffffff?text=Couple+Photo+4" alt="Couple Photo 4"></div>
       </div>
-      <p class="arabic-translation" style="margin-top: 2em; max-width: 600px;">
+      <p class="arabic-translation" style="margin-top: 2.5em;">
         "From the earth We created you, and into it We will return you, and from it We will extract you another time." (Quran 20:55) - Reflecting on origins and purpose, tying into life's journey.
       </p>
-      <p class="arabic-verse" style="font-size: 2em;">مِنْهَا خَلَقْنَاكُمْ وَفِيهَا نُعِيدُكُمْ وَمِنْهَا نُخْرِجُكُمْ تَارَةً أُخْرَىٰ</p>
+      <p class="arabic-verse" style="font-size: 2.2em;">مِنْهَا خَلَقْنَاكُمْ وَفِيهَا نُعِيدُكُمْ وَمِنْهَا نُخْرِجُكُمْ تَارَةً أُخْرَىٰ</p>
     </div>
   </section>
 
@@ -586,14 +696,15 @@
       </div>
       <iframe class="location-map"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.67890!2d-74.0060!3d40.7128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDIzJzQ3LjEiTiA3NMKwMDAnMzUuOSJX!5e0!3m2!1sen!2sus!4v1678901234567!5m2!1sen!2sus"
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> <a href="mailto:rsvp@yourwedding.com?subject=Wedding RSVP for Aqil & Hanna" class="rsvp-button">
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <a href="mailto:rsvp@yourwedding.com?subject=Wedding RSVP for Aqil & Hanna" class="rsvp-button">
         RSVP Now
       </a>
-      <p style="margin-top: 2em; font-size: 1.1em;">Kindly RSVP by December 15th, 2025.</p>
-      <p class="arabic-translation" style="margin-top: 2em; max-width: 600px;">
+      <p style="margin-top: 2.5em; font-size: 1.1em;">Kindly RSVP by December 15th, 2025.</p>
+      <p class="arabic-translation" style="margin-top: 2.5em;">
         "Our Lord, grant us from among our wives and offspring comfort to our eyes and make us leaders for the righteous." (Quran 25:74) - A beautiful prayer for family and guidance.
       </p>
-      <p class="arabic-verse" style="font-size: 2em;">رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا</p>
+      <p class="arabic-verse" style="font-size: 2.2em;">رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا</p>
     </div>
   </section>
 
@@ -620,8 +731,6 @@
     const navbar = document.getElementById("myNavbar");
     const heroSection = document.getElementById("welcome");
     let primaryColorRgb = '123, 37, 37'; // Default if CSS variable isn't parsed
-
-    document.documentElement.style.setProperty('--primary-color-rgb', primaryColorRgb); // Set default RGB
 
     // Function to get RGB value from hex or named color
     function getRgbFromCssVar(varName) {
