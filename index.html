@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aqil & Hanna - Wedding Invitation</title>
+  <title>Aqil & Hanna - Wedding Reception Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -102,10 +102,76 @@
         background-color: var(--bg-color-dark);
     }
 
+    /* --- WELCOME SECTION SPECIFIC STYLES --- */
     .hero-section {
-      background: url('Welcome.png') center/cover no-repeat fixed; /* NEW main background */
-      color: var(--text-color); /* Ensure text is readable against new bg */
+      background: url('download.jpg') center/cover no-repeat; /* Use the new image here */
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* Align content to the top initially */
+      align-items: center;
+      padding-top: 5vh; /* Adjust padding to bring content down */
+      position: relative;
     }
+    .hero-section::before { /* For the subtle animated gradient on top of the image */
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: radial-gradient(circle at top left, rgba(255,255,255,0.1) 0%, transparent 30%),
+                    radial-gradient(circle at bottom right, rgba(255,255,255,0.1) 0%, transparent 30%);
+        animation: gradientShift 20s infinite alternate;
+        pointer-events: none;
+        z-index: 1;
+    }
+    .hero-content { /* Wrapper for text content on welcome page */
+        position: relative; /* To be above the pseudo-element background */
+        z-index: 2;
+        max-width: 600px; /* Constrain width for better readability */
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.6); /* Semi-transparent background for text */
+        border-radius: 10px;
+        margin-top: 15vh; /* Push content down to match image layout */
+        box-shadow: var(--box-shadow-light);
+        text-align: center;
+    }
+
+    .hero-content h2 {
+      font-size: 1.8em; /* Adjusted size for the new layout */
+      margin-bottom: 0.5em;
+      letter-spacing: 2px;
+      color: var(--primary-color); /* Make heading stand out */
+      font-weight: 700;
+    }
+    .hero-content h1 {
+      font-size: 4em; /* Adjusted size for names */
+      margin-bottom: 0.8em;
+      color: var(--secondary-color); /* Adjusted color to fit new bg */
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    }
+    .hero-content .arabic-translation, .hero-content .arabic-verse {
+        color: var(--text-color); /* Ensure readability */
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+        font-size: 1.1em;
+    }
+    .hero-content .arabic-verse {
+        font-size: 2em; /* Smaller Arabic for this layout */
+        line-height: 1.6;
+        margin-top: 1.5em;
+    }
+    .hero-content .rsvp-button {
+        margin-top: 2em;
+        background-color: var(--primary-color); /* Keeping primary color for button */
+        color: white;
+    }
+    .hero-section .arabic-translation.small-text {
+        font-size: 0.9em;
+        margin-top: 0.5em;
+        font-style: italic;
+    }
+    /* --- END WELCOME SECTION SPECIFIC STYLES --- */
+
 
     .about-us-section {
       background: url('aboutus.png') center/cover no-repeat; /* Subtle pattern */
@@ -123,7 +189,7 @@
         background-color: #f7f3f2;
     }
 
-    /* Animated Particles/Gradient Effect */
+    /* Animated Particles/Gradient Effect - kept for other sections */
     .animated-bg::before {
       content: '';
       position: absolute;
@@ -491,6 +557,12 @@
         .family-card h3 { font-size: 2em; }
         .family-card li { font-size: 1.1em; }
         .gallery-item img { height: 250px; }
+
+        .hero-content { margin-top: 10vh; max-width: 500px; }
+        .hero-content h2 { font-size: 1.6em; }
+        .hero-content h1 { font-size: 3.5em; }
+        .hero-content .arabic-translation, .hero-content .arabic-verse { font-size: 1em; }
+        .hero-content .arabic-verse { font-size: 1.8em; }
     }
 
     @media (max-width: 768px) {
@@ -516,6 +588,12 @@
       .rsvp-button { padding: 0.8em 2em; font-size: 1.2em; }
       .location-map { height: 300px; }
       .music-control button { width: 45px; height: 45px; font-size: 1.3em; }
+
+      .hero-content { margin-top: 8vh; max-width: 400px; }
+      .hero-content h2 { font-size: 1.4em; }
+      .hero-content h1 { font-size: 3em; }
+      .hero-content .arabic-translation, .hero-content .arabic-verse { font-size: 0.9em; }
+      .hero-content .arabic-verse { font-size: 1.6em; }
     }
 
     @media (max-width: 480px) {
@@ -534,7 +612,7 @@
       .love-story { font-size: 1em; }
       #countdown { gap: 10px; }
       .countdown-item { min-width: 70px; padding: 0.8em 0.5em; }
-      .countdown-item span { font-size: 2em; }
+      .countdown-item span { font-size: 1.8em; }
       .countdown-item small { font-size: 0.8em; }
       .family-tree-content { gap: 20px; }
       .family-card { padding: 1.5em; }
@@ -546,6 +624,12 @@
       .location-map { height: 250px; }
       .music-control { bottom: 15px; right: 15px; }
       .music-control button { width: 40px; height: 40px; font-size: 1.2em; }
+
+      .hero-content { margin-top: 5vh; max-width: 300px; }
+      .hero-content h2 { font-size: 1.1em; }
+      .hero-content h1 { font-size: 2.5em; }
+      .hero-content .arabic-translation, .hero-content .arabic-verse { font-size: 0.8em; }
+      .hero-content .arabic-verse { font-size: 1.4em; }
     }
   </style>
 </head>
@@ -561,17 +645,24 @@
     <a href="#venue">Venue & RSVP</a>
   </nav>
 
-  <section id="welcome" class="hero-section animated-bg">
-    <div class="overlay"></div>
-    <div class="content-wrapper">
+  <section id="welcome" class="hero-section">
+    <div class="hero-content">
       <h2>You're Invited to the Wedding Reception of</h2>
       <h1>Aqil & Hanna</h1>
-      <p class="arabic-translation" style="margin-top: 2.5em; font-weight: 400;">
-        "And from among His signs is that He created for you mates from yourselves, that you may find tranquility in them; and He placed between you affection and mercy. Indeed in that are signs for a people who give thought."
+      <p class="arabic-verse" style="font-family: 'Amiri', serif; font-size: 2.5em; line-height: 1.5; margin-bottom: 0.5em; color: var(--primary-color);">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+      <p class="arabic-translation small-text">In the name of Allah, the Most Gracious, the Most Merciful.</p>
+
+      <p class="arabic-translation" style="margin-top: 1.5em;">
+        "And one of His signs is that He created for you spouses from yourselves, that you may find tranquility in them; and He placed between you affection and mercy."
       </p>
-      <p class="arabic-verse" style="font-size: 2.2em;">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ</p>
-      <a href="#countdown" style="text-decoration: none; margin-top: 3.5em; display: inline-block;">
-          <button class="rsvp-button" style="background-color: var(--accent-gold); color: var(--text-color);">
+      <p class="arabic-verse" style="font-size: 2.2em; margin-top: 0.8em; margin-bottom: 2em; color: var(--secondary-color);">
+          وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+      </p>
+      <p class="arabic-translation small-text">(Quran 30:21)</p>
+
+
+      <a href="#countdown" style="text-decoration: none; margin-top: 2.5em; display: inline-block;">
+          <button class="rsvp-button" style="background-color: var(--primary-color); color: white;">
               Begin Our Journey <span style="margin-left: 10px;"><i class="fas fa-chevron-down"></i></span>
           </button>
       </a>
@@ -598,7 +689,7 @@
           <span id="seconds"></span>
           <small>Seconds</small>
         </div>
-     
+
   </section>
 
   <section id="about" class="about-us-section animated-bg">
@@ -613,7 +704,10 @@
       <p class="love-story">
         Aqil and Hanna's journey began with a shared smile and a common dream. Through laughter and unwavering support, their hearts became intertwined. From the quiet moments of companionship to the grand adventures, their bond has grown stronger with each passing day. Now, they are ready to embark on this beautiful new chapter, hand-in-hand, with the blessings of Allah and their loved ones. They eagerly anticipate celebrating their union with you.
       </p>
-     
+      <p class="arabic-translation" style="margin-top: 2.5em;">
+        "O mankind, indeed We have created you from male and female and made you peoples and tribes that you may know one another. Indeed, the most noble of you in the sight of Allah is the most righteous of you. Indeed, Allah is Knowing and Acquainted." 
+      </p>
+      <p class="arabic-verse" style="font-size: 2.2em;">يَا أَيُّهَا النَّاسُ إِنَّا خَلَقْنَاكُمْ مِّن ذَكَرٍ وَأُنثَىٰ وَجَعَلْنَاكُمْ شُعُوبًا وَقَبَائِلَ لِتَعَارَفُوا ۚ إِنَّ أَكْرَمَكُمْ عِندَ اللَّهِ أَتْقَاكُمْ ۚ إِنَّ اللَّهَ عَلِيمٌ خَبِيرٌ</p>
     </div>
   </section>
 
@@ -631,16 +725,16 @@
           <h3>Bride's Family</h3>
           <ul>
             <li><strong>Parents:</strong> Mr. & Mrs. Sajeer</li>
-            <li><strong>Sister:</strong> Rena</li>
-            <li><strong>Sister:</strong> saira</li>
+            <li><strong>Brother:</strong> </li>
+            <li><strong>Sister:</strong>  </li>
           </ul>
         </div>
         <div class="family-card">
           <h3>Groom's Family</h3>
           <ul>
-            <li><strong>Parents:</strong> Mr. & Mrs. Hussan</li>
-            <li><strong>Brother:</strong> Jasir</li>
+            <li><strong>Parents:</strong> Hussan & Umamath</li>
             <li><strong>Sister:</strong> Harshitha</li>
+            
           </ul>
         </div>
       </div>
@@ -653,10 +747,9 @@
       <div class="details-box">
         <p><strong>Date:</strong> Friday, 9th January 2026</p>
         <p><strong>Time:</strong> 6:00 PM – 10:00 PM</p>
-        
-        
+        <p><strong>Dress Code:</strong> Traditional / Formal Attire</p>
+        <p><strong>Special Request:</strong> Your presence and blessings are our most cherished gift.</p>
    
-     
   </section>
 
   <section id="gallery" class="animated-bg">
@@ -667,12 +760,7 @@
         <div class="gallery-item"><img src="https://via.placeholder.com/400x300/d0d0d0/ffffff?text=Couple+Photo+2" alt="Couple Photo 2"></div>
         <div class="gallery-item"><img src="https://via.placeholder.com/400x300/c0c0c0/ffffff?text=Couple+Photo+3" alt="Couple Photo 3"></div>
         <div class="gallery-item"><img src="https://via.placeholder.com/400x300/b0b0b0/ffffff?text=Couple+Photo+4" alt="Couple Photo 4"></div>
-      </div>
-      <p class="arabic-translation" style="margin-top: 2.5em;">
-        "From the earth We created you, and into it We will return you, and from it We will extract you another time." (Quran 20:55) - Reflecting on origins and purpose, tying into life's journey.
-      </p>
-      <p class="arabic-verse" style="font-size: 2.2em;">مِنْهَا خَلَقْنَاكُمْ وَفِيهَا نُعِيدُكُمْ وَمِنْهَا نُخْرِجُكُمْ تَارَةً أُخْرَىٰ</p>
-    </div>
+     
   </section>
 
   <section id="venue" class="venue-section section-dark animated-bg">
@@ -690,7 +778,7 @@
       </a>
       <p style="margin-top: 2.5em; font-size: 1.1em;">Kindly RSVP by December 15th, 2025.</p>
       <p class="arabic-translation" style="margin-top: 2.5em;">
-        "Our Lord, grant us from among our wives and offspring comfort to our eyes and make us leaders for the righteous." (Quran 25:74) - A beautiful prayer for family and guidance.
+        "Our Lord, grant us from among our wives and offspring comfort to our eyes and make us leaders for the righteous." (Quran 25:74) 
       </p>
       <p class="arabic-verse" style="font-size: 2.2em;">رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا</p>
     </div>
@@ -757,6 +845,7 @@
 
     // 3. Section Scroll-in Animation (Intersection Observer)
     document.addEventListener('DOMContentLoaded', () => {
+      // Exclude the welcome page's hero-content from this animation, as it has custom styling now
       const contentWrappers = document.querySelectorAll('.content-wrapper');
 
       const observerOptions = {
