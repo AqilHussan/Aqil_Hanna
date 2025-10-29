@@ -1,7 +1,718 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aqil & Hanna - Wedding Reception Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #7b2525; /* Deep Red/Burgundy */
+            --secondary-color: #4a2c2a; /* Dark Brown */
+            --text-color: #2f1f1f;
+            --bg-color-light: #faf6f5; /* Off-White/Cream */
+            --bg-color-dark: #f0ebea; /* Light Gray/Beige */
+            --accent-gold: #d4af37; /* Gold */
+            --box-shadow-light: 0 5px 20px rgba(0,0,0,0.1);
+            --box-shadow-heavy: 0 10px 35px rgba(0,0,0,0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color-light);
+            overflow-x: hidden;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Scrollbar Styling */
+        body::-webkit-scrollbar { width: 10px; }
+        body::-webkit-scrollbar-track { background: var(--bg-color-light); }
+        body::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 5px; }
+        body::-webkit-scrollbar-thumb:hover { background: var(--accent-gold); }
+
+        /* Sticky Navigation */
+        .navbar {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000; display: flex; justify-content: center;
+            padding: 1rem 0; opacity: 0; visibility: hidden;
+            transform: translateY(-100%);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, border-bottom 0.3s ease;
+            border-bottom: 1px solid transparent;
+        }
+        .navbar.sticky {
+            opacity: 1; visibility: visible; transform: translateY(0);
+            border-bottom: 1px solid rgba(220, 200, 200, 0.4);
+        }
+        .navbar a {
+            color: var(--secondary-color); padding: 0.5rem 1.2rem;
+            text-decoration: none; font-weight: 600;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 5px; font-size: 1.05em;
+        }
+        .navbar a:hover {
+            color: var(--primary-color);
+            background-color: rgba(var(--primary-color-rgb), 0.05);
+        }
+
+        section {
+            position: relative; width: 100%; min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center;
+            padding: 4rem 2rem; overflow: hidden;
+            background-color: var(--bg-color-light);
+            transition: background-color 1s ease-out;
+        }
+
+        .section-dark { background-color: var(--bg-color-dark); }
+
+        /* --- WELCOME SECTION SPECIFIC STYLES --- */
+        .hero-section {
+            background: url('Welcome.png') center/cover no-repeat;
+            color: var(--text-color); display: flex;
+            flex-direction: column; justify-content: flex-start;
+            align-items: center; padding-top: 5vh; position: relative;
+        }
+        .hero-section::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.1) 0%, transparent 30%),
+                        radial-gradient(circle at bottom right, rgba(255,255,255,0.1) 0%, transparent 30%);
+            animation: gradientShift 20s infinite alternate;
+            pointer-events: none; z-index: 1;
+        }
+        .hero-content {
+            position: relative; z-index: 2;
+            max-width: 600px; padding: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px; margin-top: 15vh;
+            box-shadow: var(--box-shadow-light); text-align: center;
+        }
+
+        .hero-content h2 {
+            font-size: 1.8em; margin-bottom: 0.5em;
+            letter-spacing: 2px; color: var(--primary-color);
+            font-weight: 700;
+        }
+        .hero-content h1 {
+            font-size: 4em; margin-bottom: 0.8em;
+            color: var(--secondary-color);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+        }
+        .hero-content .arabic-translation, .hero-content .arabic-verse {
+            color: var(--text-color); margin-top: 1em;
+            margin-bottom: 0.5em; font-size: 1.1em;
+        }
+        .hero-content .arabic-verse {
+            font-size: 2em; line-height: 1.6; margin-top: 1.5em;
+        }
+        .hero-section .arabic-translation.small-text {
+            font-size: 0.9em; margin-top: 0.5em; font-style: italic;
+        }
+        /* --- END WELCOME SECTION SPECIFIC STYLES --- */
+
+
+        .about-us-section { background: url('aboutus.png') center/cover no-repeat; }
+        .countdown-section { background-color: #fcf8f7; }
+        .family-tree-section { background: url('Family.png') center/cover no-repeat; }
+        .venue-section { background-color: #f7f3f2; }
+
+        .animated-bg::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.1) 0%, transparent 30%),
+                        radial-gradient(circle at bottom right, rgba(255,255,255,0.1) 0%, transparent 30%);
+            animation: gradientShift 20s infinite alternate;
+            pointer-events: none; z-index: 1;
+        }
+
+        .overlay {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(2px); z-index: 0;
+        }
+
+        .content-wrapper {
+            position: relative; z-index: 2;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3.5em 4.5em; border-radius: 20px;
+            box-shadow: var(--box-shadow-heavy); max-width: 900px;
+            width: 100%; margin: 2rem auto;
+            border: 1px solid rgba(220, 200, 200, 0.5);
+            transform: scale(0.98);
+            animation: subtleZoom 8s infinite alternate ease-in-out;
+            opacity: 0; transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .content-wrapper.animate-in { opacity: 1; transform: translateY(0); }
+
+        /* H1 Font Fix - Using Alex Brush for Elegant Script */
+        h1 {
+            font-family: 'Alex Brush', cursive;
+            font-size: 5.5em; 
+            color: var(--primary-color);
+            margin-bottom: 0.1em;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+            line-height: 1.1;
+            text-transform: none; /* Prevents unwanted lowercase */
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif; /* Dramatic, high-contrast serif */
+            font-size: 2.4em;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 1.5em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .sub-heading {
+            font-family: 'Alex Brush', cursive; /* Matching script for section headings */
+            font-size: 2.8em; 
+            color: var(--primary-color);
+            margin-top: 1.5em;
+            margin-bottom: 1em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .arabic-verse {
+            font-family: 'Amiri', serif; font-size: 2.4em;
+            direction: rtl; margin: 1.8em 0 0.8em 0;
+            color: var(--primary-color); text-shadow: 1px 1px 2px rgba(0,0,0,0.08);
+            line-height: 1.8; max-width: 80%;
+            margin-left: auto; margin-right: auto;
+        }
+        .arabic-translit {
+            font-size: 1.1em; color: var(--secondary-color);
+            font-style: italic; margin-top: 0.5em;
+        }
+        .arabic-translation {
+            font-size: 1.2em; color: var(--text-color);
+            margin-top: 1em; font-weight: 300;
+            max-width: 700px; margin-left: auto;
+            margin-right: auto;
+        }
+
+        .details-box {
+            font-size: 1.3em; line-height: 2;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 2.5em 4em; border-radius: 15px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+            display: inline-block; border: 1px solid rgba(220, 200, 200, 0.6);
+            margin-top: 2em;
+        }
+        .details-box p { margin-bottom: 0.8em; }
+        .details-box p:last-child { margin-bottom: 0; }
+        .details-box strong { color: var(--primary-color); font-weight: 700; }
+
+        .couple-names {
+            display: flex; justify-content: center;
+            align-items: center; gap: 30px;
+            margin-bottom: 1em;
+        }
+        .couple-names span {
+            font-family: 'Alex Brush', cursive;
+            font-size: 4.5em; color: var(--primary-color);
+        }
+        .couple-names .ampersand {
+            font-size: 2.8em; color: var(--secondary-color);
+        }
+        .love-story {
+            font-size: 1.2em; margin-top: 1.8em;
+            max-width: 750px; margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Countdown Timer */
+        #countdown {
+            display: flex; justify-content: center;
+            gap: 30px; margin-top: 2.8em;
+        }
+        .countdown-item {
+            background: var(--primary-color); color: white;
+            padding: 1.8em 1.2em; border-radius: 15px;
+            min-width: 130px; box-shadow: var(--box-shadow-light);
+            transition: transform 0.3s ease;
+        }
+        .countdown-item:hover { transform: translateY(-5px); }
+        .countdown-item span {
+            display: block; font-size: 3em; font-weight: 700; line-height: 1;
+        }
+        .countdown-item small {
+            font-size: 1em; text-transform: uppercase;
+            margin-top: 0.6em; letter-spacing: 1px;
+        }
+        
+        /* New Nikah Date/Time Styling */
+        .event-details {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4em;
+            color: var(--secondary-color);
+            margin: 5px 0 15px 0;
+            font-weight: 600;
+        }
+
+
+        /* Family Tree/Card Layout */
+        .family-tree-content {
+            display: flex; flex-wrap: wrap;
+            justify-content: center; gap: 40px;
+            margin-top: 3em;
+        }
+        .family-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5em; border-radius: 15px;
+            box-shadow: var(--box-shadow-light);
+            width: 100%; max-width: 380px;
+            border: 1px solid rgba(220, 200, 200, 0.7);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* Added text alignment for narrative style */
+            text-align: left; 
+        }
+        .family-card:hover { transform: translateY(-8px); box-shadow: var(--box-shadow-heavy); }
+        .family-card h3 {
+            font-family: 'Alex Brush', cursive;
+            font-size: 2.2em; color: var(--primary-color);
+            margin-bottom: 1em; text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .family-card p {
+            font-size: 1.15em; color: var(--text-color);
+            margin-bottom: 1.2em; line-height: 1.6;
+        }
+        .family-card p strong {
+             color: var(--primary-color); font-weight: 600;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px; margin-top: 3em;
+            max-width: 1000px; width: 100%;
+        }
+        .gallery-item {
+            overflow: hidden; border-radius: 15px;
+            box-shadow: var(--box-shadow-light); position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover { transform: translateY(-5px) scale(1.02); box-shadow: var(--box-shadow-heavy); }
+        .gallery-item img {
+            width: 100%; height: 300px;
+            object-fit: cover; display: block;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img { transform: scale(1.05); }
+
+        .location-map {
+            margin-top: 2.5em; width: 100%;
+            max-width: 600px; height: 350px;
+            border-radius: 10px; border: 2px solid var(--accent-gold);
+            box-shadow: var(--box-shadow-light);
+        }
+
+        footer {
+            text-align: center; padding: 3.5em;
+            font-size: 1.1em; color: var(--secondary-color);
+            background: var(--bg-color-dark);
+            border-top: 1px solid rgba(0,0,0,0.05); position: relative;
+            z-index: 10;
+        }
+        footer p { max-width: 800px; margin: 0 auto; font-style: italic; }
+
+        /* Keyframe Animations */
+        @keyframes subtleZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.005); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%, 100% 100%; }
+            100% { background-position: 100% 100%, 0% 0%; }
+        }
+
+        /* --- MEDIA QUERIES FOR RESPONSIVENESS --- */
+        @media (max-width: 900px) {
+            .navbar a { padding: 0.5rem 0.8rem; font-size: 0.9em; }
+            .content-wrapper { padding: 2.5em 3em; margin: 1.5rem auto; border-radius: 15px;}
+            h1 { font-size: 4.5em; }
+            h2 { font-size: 2em; }
+            .sub-heading { font-size: 2.2em; }
+            .couple-names span { font-size: 3.5em; }
+            .countdown-item { min-width: 100px; padding: 1.2em 0.8em; }
+            .countdown-item span { font-size: 2.5em; }
+            .arabic-verse { font-size: 2em; }
+            .details-box { padding: 2em 3em; font-size: 1.1em; }
+            .family-card { padding: 2em; max-width: 320px; }
+            .family-card h3 { font-size: 2em; }
+            .family-card p { font-size: 1.1em; }
+            .gallery-item img { height: 250px; }
+            .hero-content { margin-top: 10vh; max-width: 500px; }
+            .hero-content h2 { font-size: 1.6em; }
+            .hero-content h1 { font-size: 3.5em; }
+            .hero-content .arabic-translation, .hero-content .arabic-verse { font-size: 1em; }
+            .hero-content .arabic-verse { font-size: 1.8em; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 0.8rem 0; }
+            .navbar a { padding: 0.4rem 0.6rem; font-size: 0.85em; }
+            h1 { font-size: 3.5em; }
+            h2 { font-size: 1.6em; margin-bottom: 1em;}
+            .sub-heading { font-size: 1.9em; }
+            .content-wrapper { padding: 2em; border-radius: 12px;}
+            .details-box { font-size: 1em; padding: 1.5em 2em; }
+            .couple-names { gap: 15px; }
+            .couple-names span { font-size: 3em; }
+            .couple-names .ampersand { font-size: 2.2em; }
+            .arabic-verse { font-size: 1.8em; margin: 1.5em 0 0.7em 0; }
+            .arabic-translation { font-size: 1.1em; }
+            .countdown-item { min-width: 85px; gap: 15px; padding: 1em 0.7em; }
+            .countdown-item span { font-size: 2.2em; }
+            .family-card { padding: 1.8em; }
+            .family-card h3 { font-size: 1.8em; }
+            .family-card p { font-size: 1em; }
+            .gallery { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+            .gallery-item img { height: 200px; }
+            .location-map { height: 300px; }
+            .hero-content { margin-top: 8vh; max-width: 400px; }
+            .hero-content h2 { font-size: 1.4em; }
+            .hero-content h1 { font-size: 3em; }
+            .hero-content .arabic-translation, .hero-content .arabic-verse { font-size: 0.9em; }
+            .hero-content .arabic-verse { font-size: 1.6em; }
+        }
+
+        /* CRITICAL MOBILE FIXES (480px and smaller) */
+        @media (max-width: 480px) {
+            .navbar { display: none; }
+            section { padding: 3rem 1rem; }
+            h1 { font-size: 2.8em; }
+            h2 { font-size: 1.3em; margin-bottom: 0.8em;}
+            .sub-heading { font-size: 1.6em; }
+            
+            /* Reduced padding to prevent overflow */
+            .content-wrapper { 
+                padding: 1.5em 1em; 
+                border-radius: 10px;
+                max-width: 95%; /* Ensures no horizontal scroll */
+            }
+            .details-box { font-size: 0.9em; padding: 1.2em; }
+            .couple-names { flex-direction: column; gap: 5px; }
+            .couple-names span { font-size: 2.5em; }
+            .couple-names .ampersand { display: none; }
+            .arabic-verse { font-size: 1.5em; margin: 1.2em 0 0.6em 0; }
+            .arabic-translation { font-size: 1em; }
+            .love-story { font-size: 1em; }
+            
+            /* Countdown: Force two-column layout */
+            #countdown { 
+                gap: 15px; 
+                flex-wrap: wrap; 
+            }
+            .countdown-item { 
+                width: calc(50% - 7.5px); /* Forces two items per row */
+                min-width: unset; 
+                padding: 0.8em 0.5em; 
+            }
+            .countdown-item span { font-size: 1.8em; }
+            .countdown-item small { font-size: 0.7em; }
+            
+            /* Family Cards: Force full width */
+            .family-tree-content { gap: 20px; }
+            .family-card { 
+                width: 100%; 
+                max-width: none;
+                padding: 1.5em;
+            }
+            .family-card h3 { font-size: 1.6em; }
+            .family-card p { font-size: 0.95em; line-height: 1.5; }
+            
+            .gallery { grid-template-columns: 1fr; }
+            .gallery-item img { height: 250px; }
+            .location-map { height: 250px; }
+            .hero-content { margin-top: 5vh; max-width: 300px; }
+            .hero-content h2 { font-size: 1.1em; }
+            .hero-content h1 { font-size: 2.5em; }
+            .hero-content .arabic-translation, .hero-content .arabic-verse { font-size: 0.8em; }
+            .hero-content .arabic-verse { font-size: 1.4em; }
+
+            /* New Nikah Date/Time Styling */
+            .event-details {
+                font-size: 1.1em;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" id="myNavbar">
+        <a href="#welcome">Welcome</a>
+        <a href="#countdown">Nikah</a>
+        <a href="#family-tree">Family</a>
+        <a href="#details">Reception</a>
+        <a href="#venue">Venue</a>
+    </nav>
+
+    <section id="welcome" class="hero-section">
+        <div class="hero-content">
+            <p class="arabic-verse" style="font-family: 'Amiri', serif; font-size: 2.5em; line-height: 1.5; margin-bottom: 0.5em; color: var(--primary-color);">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+            <p class="arabic-translation small-text">In the name of Allah, the Most Gracious, the Most Merciful.</p>
+            <h1> Aqil & Hanna </h1>
+            
+            <p class="arabic-translation" style="margin-top: 1.5em;">
+                "And one of His signs is that He created for you spouses from yourselves, that you may find tranquility in them; and He placed between you affection and mercy."
+            </p>
+            <p class="arabic-verse" style="font-size: 2.2em; margin-top: 0.8em; margin-bottom: 2em; color: var(--secondary-color);">
+                وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+            </p>
+            <p class="arabic-translation small-text">(Quran 30:21)</p>
+            <a href="#countdown" style="text-decoration: none; margin-top: 2.5em; display: inline-block;"></a>
+        </div>
+    </section>
+
+    <section id="countdown" class="countdown-section section-dark animated-bg">
+        <div class="content-wrapper">
+            <h2 class="sub-heading">Nikah</h2>
+            <p class="event-details">Monday, 5th January 2026</p>
+            <p class="event-details">Time: 11:30 AM</p>
+            
+            <div id="countdown">
+                <div class="countdown-item">
+                    <span id="days"></span>
+                    <small>Days</small>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours"></span>
+                    <small>Hours</small>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes"></span>
+                    <small>Minutes</small>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds"></span>
+                    <small>Seconds</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="family-tree" class="family-tree-section animated-bg">
+        <div class="overlay"></div>
+        <div class="content-wrapper">
+            <h2 class="sub-heading">Our Beloved Families</h2>
+            
+            <div class="family-tree-content">
+                <div class="family-card">
+                    <h3>Hanna's Family</h3>
+                    <p>Hanna is the beloved daughter of **Sajeer Hussain & Shereena**. She is the cherished sister of **Saira** (married to **Shijas**) and **Rena**, and the loving aunt to nephew **Khalid** (Saira and Shijas's son).</p>
+                    <p>She is the granddaughter of the late **Hussain Khan & Nabeesa Hussain** and **Aboobacker Backattu & Naumath Beevi**.</p>
+                </div>
+                
+                <div class="family-card">
+                    <h3>Aqil's Family</h3>
+                    <p>Aqil is the dear son of **Hussan & Umamath Beegam**, and brother to **Harshitha**. He is brother-in-law to **Jasir**, and the loving uncle to nephew **Iziyan** and nieces **Imsha and Inaara**.</p>
+                    <p>He is the grandson of the late **Aboo K A & Rahiya** and the late **Abdul Khader & Sainaba**.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="details" class="section-dark">
+        <div class="content-wrapper">
+            <h2 class="sub-heading">Reception</h2>
+            <div class="details-box">
+                <p>Join us for our reception on **Friday, January 9th, 2026** (6:00 PM – 10:00 PM) to celebrate the beginning of our forever.</p>
+                <p>We ask for no greater treasure than the sincerity of your presence, which serves as a profound **blessing** on our journey together.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="venue" class="venue-section section-dark animated-bg">
+        <div class="content-wrapper">
+            <h2 class="sub-heading">Join Us Here</h2>
+            <div class="details-box">
+                <p><strong>Venue:</strong>Trinita Casa</p>
+                <p>North Edappally, Kochi</p>
+            </div>
+            <iframe class="location-map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.9839352988184!2d76.3054593741639!3d10.00762147285608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080c98f5b89417%3A0xcb1b93f1816f5825!2sTrinita%20Casa!5e0!3m2!1sen!2sin!4v1699793130635!5m2!1sen!2sin" 
+                width="100%" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            
+            <p class="arabic-translation" style="margin-top: 2.5em;">
+                "Our Lord, grant us from among our wives and offspring comfort to our eyes and make us leaders for the righteous." (Quran 25:74) 
+            </p>
+            <p class="arabic-verse" style="font-size: 2.2em;">رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>“And one of His signs is that He created for you spouses from among yourselves so that you may find comfort in them.” — Qur’an 30:21</p>
+        <p style="margin-top: 10px; font-size: 0.8em; color: #777;">With love Aqil & Hanna</p>
+    </footer>
+
+    <script>
+        // JavaScript for dynamic effects
+
+        // 1. Sticky Navigation Bar
+        const navbar = document.getElementById("myNavbar");
+        const heroSection = document.getElementById("welcome");
+
+        function getRgbFromCssVar(varName) {
+            const tempDiv = document.createElement('div');
+            tempDiv.style.color = getComputedStyle(document.documentElement).getPropertyValue(varName);
+            document.body.appendChild(tempDiv);
+            const color = getComputedStyle(tempDiv).color;
+            document.body.removeChild(tempDiv);
+
+            const match = color.match(/\d+/g);
+            if (match && match.length >= 3) {
+                return `${match[0]}, ${match[1]}, ${match[2]}`;
+            }
+            return null;
+        }
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > heroSection.offsetHeight - 80) {
+                navbar.classList.add("sticky");
+            } else {
+                navbar.classList.remove("sticky");
+            }
+        });
+
+        // 2. Smooth Scrolling for Navigation
+        document.querySelectorAll('.navbar a, .rsvp-button[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 3. Section Scroll-in Animation (Intersection Observer)
+        document.addEventListener('DOMContentLoaded', () => {
+            const contentWrappers = document.querySelectorAll('.content-wrapper');
+
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.3 // Trigger when 30% of the item is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        // observer.unobserve(entry.target);
+                    } else {
+                        entry.target.classList.remove('animate-in');
+                    }
+                });
+            }, observerOptions);
+
+            contentWrappers.forEach(wrapper => {
+                observer.observe(wrapper);
+            });
+
+            // Set primary color RGB for hover effect
+            const computedPrimaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim();
+            const tempDiv = document.createElement('div');
+            tempDiv.style.color = computedPrimaryColor;
+            document.body.appendChild(tempDiv);
+            const rgbMatch = getComputedStyle(tempDiv).color.match(/\d+/g);
+            document.body.removeChild(tempDiv);
+            if (rgbMatch && rgbMatch.length >= 3) {
+                document.documentElement.style.setProperty('--primary-color-rgb', `${rgbMatch[0]}, ${rgbMatch[1]}, ${rgbMatch[2]}`);
+            }
+        });
+
+
+        // 4. Countdown Timer
+        const weddingDate = new Date("Jan 5, 2026 11:30:00").getTime(); // Nikah Date and Time
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Check if elements exist before setting innerHTML
+            if (document.getElementById("days")) document.getElementById("days").innerHTML = days;
+            if (document.getElementById("hours")) document.getElementById("hours").innerHTML = hours;
+            if (document.getElementById("minutes")) document.getElementById("minutes").innerHTML = minutes;
+            if (document.getElementById("seconds")) document.getElementById("seconds").innerHTML = seconds;
+
+
+            if (distance < 0) {
+                clearInterval(x);
+                if (document.getElementById("countdown")) {
+                    document.getElementById("countdown").innerHTML = "<div class='countdown-item'><span style='font-size:1.5em;'>The Wedding Has Begun!</span></div>";
+                }
+            }
+        }, 1000);
+
+        // 5. Background Music Control (Kept original logic structure)
+        // Ensure you uncomment the audio and control button HTML if you want music
+        // const backgroundMusic = document.getElementById("backgroundMusic");
+        // const musicToggleButton = document.getElementById("musicToggleButton");
+        // let isPlaying = false; 
+
+        // document.body.addEventListener('click', function attemptPlay() {
+        //     if (!isPlaying && backgroundMusic && musicToggleButton) {
+        //         backgroundMusic.play().then(() => {
+        //             isPlaying = true;
+        //             musicToggleButton.innerHTML = '<i class="fas fa-pause"></i>';
+        //             document.body.removeEventListener('click', attemptPlay);
+        //         }).catch(error => {
+        //             console.log("Autoplay prevented:", error);
+        //         });
+        //     }
+        // }, { once: true });
+
+
+        // if (musicToggleButton) {
+        //     musicToggleButton.addEventListener('click', () => {
+        //         if (isPlaying) {
+        //             backgroundMusic.pause();
+        //             musicToggleButton.innerHTML = '<i class="fas fa-play"></i>';
+        //         } else {
+        //             backgroundMusic.play();
+        //             musicToggleButton.innerHTML = '<i class="fas fa-pause"></i>';
+        //         }
+        //         isPlaying = !isPlaying;
+        //     });
+        // }
+
+    </script>
+</body>
+</html>
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aqil & Hanna - Wedding Reception Invitation</title>
@@ -915,4 +1626,4 @@
 
   </script>
 </body>
-</html>
+</html> -->
