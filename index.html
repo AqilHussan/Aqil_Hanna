@@ -238,7 +238,7 @@
     }
 
    h1 {
-      font-family: 'Allura', cursive; /* Clean, modern script for welcome */
+      font-family: 'Great Vibes', cursive; /* Clean, modern script for welcome */
       font-size: 5.5em; 
       color: var(--primary-color);
       margin-bottom: 0.1em;
@@ -338,6 +338,70 @@
         margin-left: auto;
         margin-right: auto;
     }
+    /* Family Tree Visual Styles */
+.family-card {
+    padding: 20px;
+    text-align: center; /* Center everything within the card */
+}
+
+.tree-root, .grandparents, .sisters {
+    list-style: none; /* Remove default bullets */
+    padding: 0;
+    margin: 0;
+}
+
+/* Style the Main Parent Node (The Center of the Tree) */
+.tree-root > li {
+    position: relative;
+    padding: 10px 20px;
+    margin: 0 auto;
+    width: fit-content; 
+    border: 1px solid #ccc; /* Soft border around the parent names */
+}
+
+/* Style for Grandparents and Siblings (The Branches) */
+.grandparents, .sisters {
+    text-align: center;
+    margin-top: 15px; /* Space between the nodes */
+}
+
+.grandparents li, .sisters li {
+    display: inline-block; /* Arrange horizontally */
+    padding: 5px 10px;
+    margin: 0 10px;
+    position: relative;
+    font-size: 0.9em; 
+    border: 1px solid #eee; /* Very light border */
+    border-radius: 4px; /* Optional: Soft rounded corners */
+}
+
+/* Drawing the Connecting Lines */
+
+/* Vertical Line DOWN from the Parents */
+.tree-root > li::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* Start line just below parent box */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 15px; /* Length of the line down to connect to sisters */
+    background: #aaa;
+}
+
+/* Horizontal Line connecting the Sisters nodes below the Parent */
+.sisters {
+    border-top: 1px solid #aaa; 
+    padding-top: 15px;
+    margin-top: 15px; /* Add extra space above the line */
+}
+
+/* Horizontal Line connecting the Grandparents nodes above the Parent */
+.grandparents {
+    border-bottom: 1px solid #aaa; 
+    padding-bottom: 15px;
+    margin-bottom: 15px; /* Add extra space below the line */
+}
 
     /* Countdown Timer */
     #countdown {
@@ -700,23 +764,62 @@
       <h2 class="sub-heading">Our Beloved Families</h2>
      
       <div class="family-tree-content">
-        <div class="family-card">
-          <h3>Bride's Family</h3>
+        <!-- <div class="family-card">
+          <h3>Hanna's Family</h3>
           <ul>
-            <li><strong>Parents:</strong> Sajeer Hussain & Shereena  </li>
+            <li><strong>GrandParants:  Late Hussain khan & Nabeesa Hussain and Aboobacker Backattu & Naumath Beevi  </li>
+            <li><strong>Parents:  Sajeer Hussain & Shereena  </li>
             
-            <li><strong>Sisters:</strong> Saira & Rena </li>
+            <li><strong>Sisters: Saira & Rena </li>
             
           </ul>
         </div>
         <div class="family-card">
-          <h3>Groom's Family</h3>
+          <h3>Aqil's Family</h3>
           <ul>
+             <li><strong>GrandParants:  Late Aboo K A & Rahiya and Late Abdul khader  & Sainaba  </li>
             <li><strong>Parents:</strong> Hussan & Umamath Beegam</li>
             <li><strong>Sister:</strong> Harshitha</li>
             
           </ul>
-        </div>
+        </div> -->
+        <div class="content-wrapper family-section">
+    <div class="family-card">
+        <h3>Hanna's Family</h3>
+        <ul class="tree-root"> 
+            <li>
+                <strong>Parents: Sajeer Hussain & Shereena</strong>
+                
+                <ul class="grandparents">
+                    <li>Grandparents: Late Hussain Khan & Nabeesa Hussain</li>
+                    <li>Grandparents: Aboobacker Backattu & Naumath Beevi</li>
+                </ul>
+
+                <ul class="sisters">
+                    <li>Sisters: Saira & Rena</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="family-card">
+        <h3>Aqil's Family</h3>
+        <ul class="tree-root">
+            <li>
+                <strong>Parents: Hussan & Umamath Beegam</strong>
+                
+                <ul class="grandparents">
+                    <li>Grandparents: Late Aboo K A & Rahiya</li>
+                    <li>Grandparents: Late Abdul Khader & Sainaba</li>
+                </ul>
+
+                <ul class="sisters">
+                    <li>Sister: Harshitha</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
       </div>
     </div>
   </section>
